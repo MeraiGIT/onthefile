@@ -177,57 +177,69 @@ export default function ChatPage() {
   return (
     <main className="flex min-h-screen flex-col bg-gradient-to-br from-[#0b0d11] via-[#0f1218] to-[#0b0d11] text-foreground">
       <div className="mx-auto flex w-full max-w-5xl flex-1 flex-col gap-6 px-4 py-8">
-        <header className="flex flex-wrap items-center justify-between gap-4">
-          <div className="flex items-center gap-4">
-            <div className="relative h-12 w-12 overflow-hidden rounded-xl bg-[#141a26] ring-1 ring-primary/50 shadow-lg shadow-primary/20">
-              <Image
-                src="/Logo Emphasizing Sleek Design.svg"
-                alt="On the File logo"
-                fill
-                className="object-contain"
-                priority
-              />
+        <header className="flex flex-col gap-6">
+          {/* Logo and Title Section */}
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
+              <div className="relative h-16 w-16 shrink-0 sm:h-20 sm:w-20">
+                <Image
+                  src="/Logo Emphasizing Sleek Design.svg"
+                  alt="On the File logo"
+                  fill
+                  className="object-contain"
+                  priority
+                />
+              </div>
+              <div className="flex flex-col gap-1">
+                <div className="flex items-center gap-3">
+                  <p className="text-xs uppercase tracking-[0.2em] text-primary sm:text-sm">
+                    On the File
+                  </p>
+                </div>
+                <h1 className="display text-2xl font-semibold tracking-tight sm:text-3xl">
+                  Чат с документами
+                </h1>
+                <p className="text-sm text-foreground/60 sm:text-base sm:text-foreground/70">
+                  Claude Sonnet 4.5 отвечает на основе ваших загруженных документов.
+                </p>
+              </div>
             </div>
-            <p className="text-xs uppercase tracking-[0.2em] text-primary">
-              On the File
-            </p>
-            <h1 className="display text-2xl font-semibold tracking-tight">
-              Чат с документами
-            </h1>
-            <p className="text-sm text-zinc-600 dark:text-zinc-400">
-              Claude Sonnet 4.5 отвечает на основе ваших загруженных документов.
-            </p>
           </div>
-          <div className="flex items-center gap-3">
+
+          {/* Controls Section */}
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-end">
             <Button
               asChild
-              className="bg-primary text-primary-foreground shadow-lg shadow-primary/30 hover:scale-[1.01] hover:bg-primary/90"
+              className="w-full bg-primary text-primary-foreground shadow-lg shadow-primary/30 transition hover:scale-[1.01] hover:bg-primary/90 sm:w-auto"
             >
               <Link href="/">Загрузить ещё файлы</Link>
             </Button>
-            <Select
-              value={selectedSource}
-              onValueChange={(val) => setSelectedSource(val)}
-            >
-              <SelectTrigger className="w-[220px]">
-                <SelectValue placeholder="Выберите документ" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">Все документы</SelectItem>
-                {documents.map((doc) => (
-                  <SelectItem key={doc.source} value={doc.source}>
-                    {doc.source} ({doc.chunk_count})
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-            <Button
-              variant="outline"
-              onClick={handleClear}
-              disabled={!messages.length}
-            >
-              Очистить чат
-            </Button>
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+              <Select
+                value={selectedSource}
+                onValueChange={(val) => setSelectedSource(val)}
+              >
+                <SelectTrigger className="w-full sm:w-[220px]">
+                  <SelectValue placeholder="Выберите документ" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">Все документы</SelectItem>
+                  {documents.map((doc) => (
+                    <SelectItem key={doc.source} value={doc.source}>
+                      {doc.source} ({doc.chunk_count})
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              <Button
+                variant="outline"
+                onClick={handleClear}
+                disabled={!messages.length}
+                className="w-full sm:w-auto"
+              >
+                Очистить чат
+              </Button>
+            </div>
           </div>
         </header>
 

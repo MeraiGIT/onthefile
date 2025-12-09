@@ -232,7 +232,7 @@ export default function Home() {
         <header className="flex flex-col gap-4">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div className="flex items-center gap-3">
-              <div className="relative h-12 w-12 overflow-hidden rounded-xl bg-primary/10 ring-1 ring-primary/40">
+              <div className="relative h-20 w-20 overflow-hidden">
                 <Image
                   src="/Logo Emphasizing Sleek Design.svg"
                   alt="On the File logo"
