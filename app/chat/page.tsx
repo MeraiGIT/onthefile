@@ -207,7 +207,7 @@ export default function ChatPage() {
           </div>
 
           {/* Controls Section */}
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-end">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-start">
             <Button
               asChild
               className="w-full bg-primary text-primary-foreground shadow-lg shadow-primary/30 transition hover:scale-[1.01] hover:bg-primary/90 sm:w-auto"
