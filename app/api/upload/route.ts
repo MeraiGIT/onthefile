@@ -47,16 +47,11 @@ export async function POST(req: Request) {
     let content: string
     let filename: string
 
-    // Try to get FormData first (for PDF uploads)
-    let formData: FormData | null = null
-    try {
-      formData = await req.formData()
-    } catch {
-      // Not FormData, will handle as JSON below
-    }
+    const contentType = req.headers.get("content-type")?.toLowerCase() ?? ""
 
-    // Check if request is FormData (PDF upload) or JSON (text upload)
-    if (formData) {
+    // Handle multipart/form-data (PDF upload) or JSON (text upload)
+    if (contentType.includes("multipart/form-data")) {
+      const formData = await req.formData()
       const file = formData.get("file")
       const filenameParam = formData.get("filename")
 
